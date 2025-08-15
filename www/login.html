@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+       
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="css/index.css">
+        <title>Process Audit</title>
+
+        <!-- NEW PLUGINS -->
+        <!-- bootstrap & fontawesome -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+        <!-- ace styles -->
+        <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+        <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+        <link rel="stylesheet" href="assets/css/select2.min.css" />
+        <script src="assets/js/ace-extra.min.js"></script>
+
+        <!-- Tabulator -->
+        <link rel="stylesheet" href="assets/tabulator-master/dist/css/tabulator_bootstrap3.min.css">
+        <script src="assets/tabulator-master/dist/js/tabulator.min.js"></script>
+
+        <!-- Sweet Alert 2 -->
+        <link rel="stylesheet" href="assets/sweetalert/dist/sweetalert2.min.css">
+        <script src="assets/sweetalert/dist/sweetalert2.min.js"></script>
+
+        <style>
+            body {
+                background-color: aqua;
+            }
+            #loginBody {
+                background-image: url('/<?php echo $pluginFolder; ?>/images/gallery/PRIMATECHPHILSFRONT.jpg');
+                height: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                
+            }
+            #imgLogo{
+                /* width:300px */
+                max-width: 100%;     /* Prevents image from overflowing horizontally */
+                height: auto;        /* Maintains aspect ratio */
+                display: block;      /* Ensures proper alignment */
+                margin: 0 auto 20px; /* Centers image and adds spacing below */
+            }
+            .parent {
+                display: flex;
+                justify-content: center; /* horizontal */
+                align-items: center;     /* vertical */
+                height: 100vh;           /* fill full height */
+            }
+
+            .child {
+                width: 400px;
+                /* padding: 20px; */
+                /* background-color: #eee; */
+            }
+        </style>
+    </head>
+    <body class="no-skin">
+        <div class="container parent">
+            <div class="child">
+                <div class="card">
+                    <div class="card-body" style="width:100%">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="" style="background-color: white; padding: 30px; border-radius: 25px;">
+                                    <div class="center">
+                                        <img src="img/logo.png" id="imgLogo" class="img-fluid" alt="">
+                                        <h3 class="" style="color:black">
+                                            <span>Process Audit</span>
+                                        </h3>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="txtUsername" placeholder="Enter Username">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="txtPassword" placeholder="Enter Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary btn-block" id="btnLogin">Login</button>
+                                    </div>
+                                    <i class="ace-icon fa fa-spinner fa-spin blue bigger-125" id="spinner" style="display: none;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                            
+        <script src="cordova.js"></script>
+
+        <!-- NEW PLUGINS -->
+        <script src="assets/js/jquery-2.1.4.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/select2.min.js"></script>
+        <script src="assets/js/ace-elements.min.js"></script>
+        <script src="assets/js/ace.min.js"></script>
+
+        <script src="js/Main.js"></script>
+        <script src="js/Login.js"></script>
+    </body>
+</html>

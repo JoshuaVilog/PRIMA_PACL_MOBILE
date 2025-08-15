@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.bossvilog.pacl" version="1.0.1" android-versionCode="10001" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Process Audit</name>
+    <description>Sample Apache Cordova App</description>
+    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
+        Apache Cordova Team
+    </author>
+    <content original-src="login.html" src="http://localhost/login.html" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+
+    <allow-navigation href="http://localhost/index.html" />
+    <allow-navigation href="http://localhost/login.html" />
+    <!-- <allow-navigation href="http://localhost/scanning.html" /> -->
+
+    <platform name="android">
+        <allow-intent href="market:*"   />
+        <preference name="AndroidPersistentFileLocation" value="Internal"       />
+        <preference name="AndroidPersistentFileLocation" value="Compatibility"  />
+        <icon density="ldpi" src="icon/36.png"      />
+        <icon density="mdpi" src="icon/48.png"      />
+        <icon density="hdpi" src="icon/72.png"      />
+        <icon density="xhdpi" src="icon/96.png"     />
+        <icon density="xxhdpi" src="icon/144.png"   />
+        <icon density="xxxhdpi" src="icon/192.png"  />
+
+
+    <!-- you can use any density that exists in the Android project -->
+    <splash src="icon/logo1.png"  density="land-hdpi"  />
+    <splash src="icon/logo1.png"  density="land-ldpi"  />
+    <splash src="icon/logo1.png"  density="land-mdpi"  />
+    <splash src="icon/logo1.png"  density="land-xhdpi" />
+    <splash src="icon/logo1.png"  density="land-xxhdpi"/>
+
+    <splash src="icon/logo1.png" density="port-hdpi"  />
+    <splash src="icon/logo1.png" density="port-ldpi"  />
+    <splash src="icon/logo1.png" density="port-mdpi"  />
+    <splash src="icon/logo1.png" density="port-xhdpi" />
+    <splash src="icon/logo1.png" density="port-xxhdpi"/>
+
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*"                 />
+        <allow-intent href="itms-apps:*"            />
+    </platform>
+    <preference name="SplashScreenDelay" value="3000" />
+
+    <plugin name="cordova-plugin-app-update" spec="2.0.2" />
+
+</widget>

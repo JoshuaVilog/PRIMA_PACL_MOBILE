@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+       
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="css/index.css">
+        <title>Process Audit</title>
+
+        <!-- NEW PLUGINS -->
+        <!-- bootstrap & fontawesome -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+        <!-- ace styles -->
+        <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+        <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+        <link rel="stylesheet" href="assets/css/select2.min.css" />
+        <script src="assets/js/ace-extra.min.js"></script>
+
+        <!-- Tabulator -->
+        <link rel="stylesheet" href="assets/tabulator-master/dist/css/tabulator_bootstrap3.min.css">
+        <script src="assets/tabulator-master/dist/js/tabulator.min.js"></script>
+
+        <!-- Sweet Alert 2 -->
+        <link rel="stylesheet" href="assets/sweetalert/dist/sweetalert2.min.css">
+        <script src="assets/sweetalert/dist/sweetalert2.min.js"></script>
+
+        <style>
+            .fixed-bottom-button {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 999;
+                padding: 10px 15px;
+                background-color: #fff;
+                border-top: 1px solid #ddd;
+                box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+    </head>
+    <body class="no-skin">
+        <div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+            <div class="main-content">
+                <div class="main-content-inner">
+                    <div class="page-content">
+                        <!-- <div class="page-header">
+                            <h5 class="text-center">Operation Management System</h5>
+                        </div> -->
+                        <h5 class="header center text-primary"><strong>Tool Management System</strong></h5>
+
+                        <div style="float:right;">
+                            <button class="btn btn-minier btn-primary" id="btnRefresh">
+                                <i class="ace-icon fa fa-refresh"></i>
+                                <!-- <span class="bigger-110 no-text-shadow">Refresh</span> -->
+                            </button>
+                            <button class="btn btn-minier btn-success" id="btnOpenModalConnection">
+                                <i class="ace-icon fa fa-signal icon-only"></i>
+                                <!-- <span class="bigger-110 no-text-shadow">Test Connection</span> -->
+                            </button>
+                            <button class="btn btn-minier btn-danger" id="btnLogOut">
+                                <i class="ace-icon fa fa-power-off icon-only"></i>
+                                <!-- <span class="bigger-110 no-text-shadow">Test Connection</span> -->
+                            </button>
+                        </div>
+                        <p class="text-primary">Welcome, <span id="displayLoginName"></span></p>
+                        <div class="collapse" id="formAudit">
+                            <div class="row">
+                                <div class="col-sm-5 col-xs-5">
+                                    <div class="form-group has-info">
+                                        <label for="">
+                                            <strong>MACHINE:</strong>
+                                        </label>
+                                        <input type="text" id="txtMachine" class="form-control disabled input-sm">
+                                    </div>
+                                </div>
+                                <div class="col-sm-7 col-xs-7">
+                                    <div class="form-group has-info">
+                                        <label for="">
+                                            <strong>JOB ORDER:</strong>
+                                        </label>
+                                        <input type="text" id="txtJobOrder" class="form-control disabled input-sm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-6">
+                                    <div class="form-group has-info">
+                                        <label for="">
+                                            <strong>ITEM CODE:</strong>
+                                        </label>
+                                        <input type="text" id="txtItemCode" class="form-control disabled input-sm">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-6">
+                                    <div class="form-group has-info">
+                                        <label for="">
+                                            <strong>MODEL:</strong>
+                                        </label>
+                                        <input type="text" id="txtModel" class="form-control disabled input-sm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="form-group has-info">
+                                        <label for="">
+                                            <strong>ITEM NAME:</strong>
+                                        </label>
+                                        <input type="text" id="txtItemName" class="form-control disabled input-sm">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">
+                                            <strong>SHIFT:</strong>
+                                        </label>
+                                        <select id="selectShift" class="form-control"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">
+                                            <strong>LINE LEADER:</strong>
+                                        </label>
+                                        <select id="selectLineLeader" class="form-control"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">
+                                            <strong>OPERATOR:</strong>
+                                        </label>
+                                        <select id="selectOperator" class="form-control" multiple></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">
+                                            <strong>AUDIT CHECK LIST:</strong>
+                                        </label>
+                                        <div id="containerAuditChkList">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">
+                                            <strong>JUDGE:</strong>
+                                        </label>
+                                        <select id="selectJudge" class="form-control input-sm"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <input type="hidden" id="txtAuditDate">
+                            <input type="hidden" id="hiddenID">
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <button class="btn btn-primary form-control" id="btnSubmit">SUBMIT</button>
+                                    <button class="btn btn-default form-control" id="btnCancel">CANCEL</button>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="">
+                                        <strong>DATE:</strong>
+                                    </label>
+                                    <input type="date" id="txtDate" class="form-control input-lg">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="table-records"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL -->
+        <div id="modalConnection" class="modal fade">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Connection Status</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <h5>IP ADDRESS: <strong id="displayIP"></strong></h5>
+                        </p>
+                        <p>
+                            <h5>STATUS: <strong id="displayConnectionStatus">ERROR CONNECTION</strong></h5>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" id="btnCheckConnection">Check Connection</button>
+                        <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+                            
+        <script src="cordova.js"></script>
+
+        <!-- NEW PLUGINS -->
+        <script src="assets/js/jquery-2.1.4.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/select2.min.js"></script>
+        <script src="assets/js/ace-elements.min.js"></script>
+        <script src="assets/js/ace.min.js"></script>
+
+        <script src="js/Main.js"></script>
+        <script src="js/Audit.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
