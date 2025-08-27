@@ -31,6 +31,9 @@
         <script src="assets/sweetalert/dist/sweetalert2.min.js"></script>
 
         <style>
+            body {
+                font-family: Tahoma, sans-serif;
+            }
             .fixed-bottom-button {
                 position: fixed;
                 bottom: 0;
@@ -42,6 +45,13 @@
                 border-top: 1px solid #ddd;
                 box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
             }
+            #containerAuditChkList td{
+                padding-left: 5px;
+                padding-right: 5px;
+                border: 1px solid #000000;
+            }
+            
+
         </style>
     </head>
     <body class="no-skin">
@@ -56,7 +66,7 @@
                         <!-- <div class="page-header">
                             <h5 class="text-center">Operation Management System</h5>
                         </div> -->
-                        <h5 class="header center text-primary"><strong>Tool Management System</strong></h5>
+                        <h5 class="header center text-primary"><strong>Process Audit Checklist</strong></h5>
 
                         <div style="float:right;">
                             <button class="btn btn-minier btn-primary" id="btnRefresh">
@@ -73,127 +83,216 @@
                             </button>
                         </div>
                         <p class="text-primary">Welcome, <span id="displayLoginName"></span></p>
-                        <div class="collapse" id="formAudit">
-                            <div class="row">
-                                <div class="col-sm-5 col-xs-5">
-                                    <div class="form-group has-info">
-                                        <label for="">
-                                            <strong>MACHINE:</strong>
-                                        </label>
-                                        <input type="text" id="txtMachine" class="form-control disabled input-sm">
-                                    </div>
-                                </div>
-                                <div class="col-sm-7 col-xs-7">
-                                    <div class="form-group has-info">
-                                        <label for="">
-                                            <strong>JOB ORDER:</strong>
-                                        </label>
-                                        <input type="text" id="txtJobOrder" class="form-control disabled input-sm">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-6">
-                                    <div class="form-group has-info">
-                                        <label for="">
-                                            <strong>ITEM CODE:</strong>
-                                        </label>
-                                        <input type="text" id="txtItemCode" class="form-control disabled input-sm">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xs-6">
-                                    <div class="form-group has-info">
-                                        <label for="">
-                                            <strong>MODEL:</strong>
-                                        </label>
-                                        <input type="text" id="txtModel" class="form-control disabled input-sm">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="form-group has-info">
-                                        <label for="">
-                                            <strong>ITEM NAME:</strong>
-                                        </label>
-                                        <input type="text" id="txtItemName" class="form-control disabled input-sm">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">
-                                            <strong>SHIFT:</strong>
-                                        </label>
-                                        <select id="selectShift" class="form-control"></select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">
-                                            <strong>LINE LEADER:</strong>
-                                        </label>
-                                        <select id="selectLineLeader" class="form-control"></select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">
-                                            <strong>OPERATOR:</strong>
-                                        </label>
-                                        <select id="selectOperator" class="form-control" multiple></select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">
-                                            <strong>AUDIT CHECK LIST:</strong>
-                                        </label>
-                                        <div id="containerAuditChkList">
+                        
+                        <ul class="nav nav-tabs ">
+                            <li class="active"><a data-toggle="tab" href="#menu1">AUDIT</a></li>
+                            <li><a data-toggle="tab" href="#menu2" id="liViewHistory">VIEW HISTORY</a></li>
+                        </ul>
 
+                        <div class="tab-content">
+                            <div id="menu1" class="tab-pane fade in active">
+                                <div class="collapse" id="formAudit">
+                                    <div class="row">
+                                        <div class="col-sm-5 col-xs-5">
+                                            <div class="form-group has-info">
+                                                <label for="">
+                                                    <strong>MACHINE:</strong>
+                                                </label>
+                                                <input type="text" id="txtMachine" class="form-control disabled input-sm">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-7">
+                                            <div class="form-group has-info">
+                                                <label for="">
+                                                    <strong>JOB ORDER:</strong>
+                                                </label>
+                                                <input type="text" id="txtJobOrder" class="form-control disabled input-sm">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-6">
+                                            <div class="form-group has-info">
+                                                <label for="">
+                                                    <strong>ITEM CODE:</strong>
+                                                </label>
+                                                <input type="text" id="txtItemCode" class="form-control disabled input-sm">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6">
+                                            <div class="form-group has-info">
+                                                <label for="">
+                                                    <strong>MODEL:</strong>
+                                                </label>
+                                                <input type="text" id="txtModel" class="form-control disabled input-sm">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group has-info">
+                                                <label for="">
+                                                    <strong>ITEM NAME:</strong>
+                                                </label>
+                                                <input type="text" id="txtItemName" class="form-control disabled input-sm">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group has-info">
+                                                <label for="">
+                                                    <strong>TIME IN:</strong>
+                                                </label>
+                                                <input type="datetime-local" id="txtTimeIn" class="form-control disabled input-sm">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="">
+                                                    <strong>SHIFT:</strong>
+                                                </label>
+                                                <select id="selectShift" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="">
+                                                    <strong>LINE LEADER:</strong>
+                                                </label>
+                                                <select id="selectLineLeader" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="">
+                                                    <strong>OPERATOR:</strong>
+                                                </label>
+                                                <select id="selectOperator" class="form-control" multiple></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="">
+                                                    <strong>IPQC:</strong>
+                                                </label>
+                                                <select id="selectIPQC" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="">
+                                                    <strong>Technician:</strong>
+                                                </label>
+                                                <select id="selectTechnician" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="">
+                                                    <strong>AUDIT CHECK LIST:</strong>
+                                                </label>
+                                                <div id="containerAuditChkListt">
+        
+                                                </div>
+                                                <div id="">
+                                                    <table id="containerAuditChkList">
+                                                        <!-- <tr>
+                                                            <td colspan="2">
+                                                                <strong>LINE LEADER</strong>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="rdo1">YES</label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="rdo1">NO</label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="rdo1">NA</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                WI - WORK INSTRUCTION
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="rdo2">YES</label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="rdo2">NO</label>
+                                                                </div>
+                                                                <div class="radio">
+                                                                    <label><input type="radio" name="rdo2">NA</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                TC - TREND CONTROL
+                                                            </td>
+                                                        </tr> -->
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label for="">
+                                                    <strong>JUDGE:</strong>
+                                                </label>
+                                                <select id="selectJudge" class="form-control input-sm"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <input type="hidden" id="txtAuditDate">
+                                    <input type="hidden" id="hiddenID">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <button class="btn btn-primary form-control" id="btnSubmit">SUBMIT</button>
+                                            <button class="btn btn-primary form-control" id="btnUpdate" style="display: none;">UPDATE</button>
+                                            <i class="ace-icon fa fa-spinner fa-spin blue bigger-125" id="spinner" style="display: none;"></i>
+                                            <button class="btn btn-default form-control" id="btnCancel">CANCEL</button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="">
+                                                <strong>DATE:</strong>
+                                            </label>
+                                            <input type="date" id="txtDate" class="form-control input-lg">
                                         </div>
                                     </div>
                                 </div>
+                                <div id="table-records"></div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">
-                                            <strong>JUDGE:</strong>
-                                        </label>
-                                        <select id="selectJudge" class="form-control input-sm"></select>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <input type="hidden" id="txtAuditDate">
-                            <input type="hidden" id="hiddenID">
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <button class="btn btn-primary form-control" id="btnSubmit">SUBMIT</button>
-                                    <button class="btn btn-default form-control" id="btnCancel">CANCEL</button>
-                                </div>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">
-                                        <strong>DATE:</strong>
-                                    </label>
-                                    <input type="date" id="txtDate" class="form-control input-lg">
-                                </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <h3 class="header smaller lighter dark"><strong>View History</strong></h3>
+                                <div id="table-history"></div>
                             </div>
                         </div>
-                        <div id="table-records"></div>
+
+                        
 
                     </div>
                 </div>
@@ -223,6 +322,21 @@
                 </div>
             </div>
         </div>
+
+        <div id="modalEditAudit" class="modal fade">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Select Audit:</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="table-edit-audit"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
                             
         <script src="cordova.js"></script>
 

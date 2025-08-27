@@ -3,8 +3,9 @@ class Main {
     constructor(){
         this.systemIP = "http://172.16.102.15:8080/";
         // this.systemIP = "http://172.16.1.13:8000/";
+        this.systemVersion = "1.0.2";
         this.systemLocalStorageTitle = "pacl";
-        this.root = this.systemIP+"1_PACL/";
+        this.root = this.systemIP+"1_PACL/";``
         this.lsUser = this.systemLocalStorageTitle +"-user"; // LOGIN USER
         this.lsEmployeeList = this.systemLocalStorageTitle +"-employee-list";
         this.lsAuditList = this.systemLocalStorageTitle +"-audit-list";
@@ -19,6 +20,31 @@ class Main {
         // console.log(formattedDate);  // Outputs something like: 2024-05-29
         return formattedDate;
 
+    }
+    GetPhilippinesDateTime(){
+        const options = {
+            timeZone: "Asia/Manila", 
+            year: "numeric", 
+            month: "2-digit", 
+            day: "2-digit", 
+            hour: "2-digit", 
+            minute: "2-digit", 
+            second: "2-digit",
+            hour12: false
+        };
+    
+        const formatter = new Intl.DateTimeFormat("en-US", options);
+        const parts = formatter.formatToParts(new Date());
+    
+        // Format to YYYY-MM-DD HH:MM:SS
+        const year = parts.find(p => p.type === "year").value;
+        const month = parts.find(p => p.type === "month").value;
+        const day = parts.find(p => p.type === "day").value;
+        const hour = parts.find(p => p.type === "hour").value;
+        const minute = parts.find(p => p.type === "minute").value;
+        const second = parts.find(p => p.type === "second").value;
+    
+        return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
     }
 
     GetEmployeeRecords(){
@@ -67,6 +93,18 @@ class Main {
         let list = [
             {a:1, b:"PASSED"},
             {a:2, b:"FAILED"},
+        ];
+
+        return list;
+    }
+    GetAuditCategory(){
+        let list = [
+            {a:1, b:"LINE LEADER", c:"#2e5895"},
+            {a:2, b:"TPM", c:"#00a86b"},
+            {a:3, b:"TECHNICIAN", c:"#c23b21"},
+            {a:4, b:"MATERIAL HANDLER", c:"#6b249d"},
+            {a:5, b:"PQC", c:"#ffc32b"},
+            {a:6, b:"OPERATOR", c:"#f04923"},
         ];
 
         return list;
@@ -137,7 +175,18 @@ class Main {
         } else {
             let result = list.find(element => element.RFID === id);
 
-            return result ? result.c: "";
+            return result ? result.EMPLOYEE_NAME: "";
+        }
+    }
+    SetEmployeeNameByRFID(id){
+        let list = JSON.parse(localStorage.getItem(this.lsEmployeeList));
+        
+        if(id == 1){
+            return "SYSTEM ADMIN"
+        } else {
+            let result = list.find(element => element.RFID === id);
+
+            return result ? result.F_NAME + " " + result.L_NAME: "";
         }
     }
     SetShift(id){
@@ -154,6 +203,30 @@ class Main {
     }
 
     CheckUpdate(){
+        let self = this;
+        $.ajax({
+            url: self.root+'config/checkUpdateMobileApp.php',
+            type: 'POST',
+            data:{},
+            success: function(response) {
+
+                if(response != self.systemVersion){
+                    
+                    Swal.fire({
+                        title: 'Update Available',
+                        text: `A new version (${response}) is available. Please update your app.`,
+                        icon: 'info',
+                        confirmButtonText: 'Exit App',
+                    }).then((result) => {
+                        
+                        navigator.app.exitApp();
+                    });
+                }
+            },
+            error: function(response){
+                alert("ERROR CHECKING UPDATE: "+response);
+            },
+        });
         /* console.log("Device is ready");
         var updateUrl = this.systemIP+"updates/OM_UPDATE/version.xml";
 
