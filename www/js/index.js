@@ -117,6 +117,7 @@ $("#table-edit-audit").on("click", ".btnModify", function(){
     audit.PopulateIPQC($("#selectIPQC"), value.IPQC);
     audit.PopulateTechnician($("#selectTechnician"), value.TECHNICIAN);
     audit.PopulateAudit($("#containerAuditChkList"), value.AUDIT_CHECKLIST);
+    $("#txtTimeIn").val(value.TIME_IN);
     $("#hiddenID").val(value.RID);
 
     window.scrollTo({

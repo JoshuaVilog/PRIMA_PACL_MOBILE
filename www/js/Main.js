@@ -1,9 +1,9 @@
 class Main {
 
     constructor(){
-        this.systemIP = "http://172.16.102.15:8080/";
-        // this.systemIP = "http://172.16.1.13:8000/";
-        this.systemVersion = "1.0.2";
+        // this.systemIP = "http://172.16.102.15:8080/";
+        this.systemIP = "http://172.16.1.13:8000/";
+        this.systemVersion = "1.0.3";
         this.systemLocalStorageTitle = "pacl";
         this.root = this.systemIP+"1_PACL/";``
         this.lsUser = this.systemLocalStorageTitle +"-user"; // LOGIN USER
@@ -84,7 +84,7 @@ class Main {
     GetShiftRecord(){
         let list = [
             {a:1, b:"DAYSHIFT", c:"DS"},
-            {a:1, b:"NIGHTSHIFT", c:"NS"},
+            {a:2, b:"NIGHTSHIFT", c:"NS"},
         ];
 
         return list;

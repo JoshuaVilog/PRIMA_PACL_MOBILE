@@ -138,9 +138,11 @@ class Audit extends Main{
     PopulateShift(selectElem, id){
         let list = this.GetShiftRecord();
         let options = '<option value="">-Select Shift-</option>';
-
+        
         list.forEach(element => {
             let selected = (element.a === id && id != undefined) ? 'selected' : '';
+            
+            console.log(element.a);
             options += `<option value="${element.a}" ${selected}>${element.b}</option>`;
         });
 
