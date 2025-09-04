@@ -239,6 +239,40 @@ class Audit extends Main{
             width: '100%'
         });
     }
+    PopulateTPM(selectElem, rfid){
+        let list = JSON.parse(localStorage.getItem(this.lsEmployeeList)) || [];
+        let options = '<option value="">-Select TPM-</option>';
+
+        list.forEach(element => {
+            if(element.DEPARTMENT_ID == 8 && element.ACTIVE == 1){ // Exclude SYSTEM ADMIN
+                let selected = (element.RFID === rfid && rfid != undefined) ? 'selected' : '';
+                options += `<option value="${element.RFID}" ${selected}>${element.EMPLOYEE_NAME}</option>`;
+            }
+        });
+
+        selectElem.html(options);
+        selectElem.select2({
+            placeholder: "-Select Technician-",
+            width: '100%'
+        });
+    }
+    PopulateMaterialHandler(selectElem, rfid){
+        let list = JSON.parse(localStorage.getItem(this.lsEmployeeList)) || [];
+        let options = '<option value="">-Select Material Handler-</option>';
+
+        list.forEach(element => {
+            if(element.DEPARTMENT_ID == 8 && element.ACTIVE == 1){ // Exclude SYSTEM ADMIN
+                let selected = (element.RFID === rfid && rfid != undefined) ? 'selected' : '';
+                options += `<option value="${element.RFID}" ${selected}>${element.EMPLOYEE_NAME}</option>`;
+            }
+        });
+
+        selectElem.html(options);
+        selectElem.select2({
+            placeholder: "-Select Technician-",
+            width: '100%'
+        });
+    }
     PopulateAudit(selectElem, array){
         let list = JSON.parse(localStorage.getItem(this.lsAuditList)) || [];
         let options = '';

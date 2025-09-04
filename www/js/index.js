@@ -83,9 +83,11 @@ $("#table-records").on("click", ".btnSet", function(){
     audit.PopulateOperator($("#selectOperator"), value.OPERATOR);
     audit.PopulateIPQC($("#selectIPQC"), value.IPQC);
     audit.PopulateTechnician($("#selectTechnician"), value.TECHNICIAN);
+    audit.PopulateTPM($("#selectTPM"), value.TPM);
+    audit.PopulateMaterialHandler($("#selectMaterialHandler"), value.MATERIAL_HANDLER);
     audit.PopulateAudit($("#containerAuditChkList"));
     $("#hiddenID").val(value.AUDIT_RID);
-    $("#txtTimeIn").val(main.GetPhilippinesDateTime());
+    $("#txtTimeIn").val(main.GetCurrentDateTime());
 
     window.scrollTo({
         top: 0,
@@ -116,6 +118,8 @@ $("#table-edit-audit").on("click", ".btnModify", function(){
     audit.PopulateOperator($("#selectOperator"), value.OPERATOR);
     audit.PopulateIPQC($("#selectIPQC"), value.IPQC);
     audit.PopulateTechnician($("#selectTechnician"), value.TECHNICIAN);
+    audit.PopulateTPM($("#selectTPM"), value.TPM);
+    audit.PopulateMaterialHandler($("#selectMaterialHandler"), value.MATERIAL_HANDLER);
     audit.PopulateAudit($("#containerAuditChkList"), value.AUDIT_CHECKLIST);
     $("#txtTimeIn").val(value.TIME_IN);
     $("#hiddenID").val(value.RID);
@@ -150,6 +154,8 @@ $("#btnSubmit").click(function(){
     let lineLeader = $("#selectLineLeader").val();
     let ipqc = $("#selectIPQC").val();
     let technician = $("#selectTechnician").val();
+    let tpm = $("#selectTPM").val();
+    let materialHandler = $("#selectMaterialHandler").val();
     let operator = $("#selectOperator").val();
     let auditList = getSelectedAudit();
     let timeIn = $("#txtTimeIn").val();
@@ -175,6 +181,8 @@ $("#btnSubmit").click(function(){
             lineLeader: lineLeader,
             ipqc: ipqc,
             technician: technician,
+            tpm: tpm,
+            materialHandler: materialHandler,
             operator: operator == null ? "[]": JSON.stringify(operator),
             auditList: JSON.stringify(auditList),
             timeIn: timeIn,
@@ -228,6 +236,8 @@ $("#btnUpdate").click(function(){
     let lineLeader = $("#selectLineLeader").val();
     let ipqc = $("#selectIPQC").val();
     let technician = $("#selectTechnician").val();
+    let tpm = $("#selectTPM").val();
+    let materialHandler = $("#selectMaterialHandler").val();
     let operator = $("#selectOperator").val();
     let auditList = getSelectedAudit();
     let timeIn = $("#txtTimeIn").val();
@@ -253,6 +263,8 @@ $("#btnUpdate").click(function(){
             lineLeader: lineLeader,
             ipqc: ipqc,
             technician: technician,
+            tpm: tpm,
+            materialHandler: materialHandler,
             operator: operator == null ? "[]": JSON.stringify(operator),
             auditList: JSON.stringify(auditList),
             timeIn: timeIn,

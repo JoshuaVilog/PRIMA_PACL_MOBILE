@@ -3,7 +3,7 @@ class Main {
     constructor(){
         // this.systemIP = "http://172.16.102.15:8080/";
         this.systemIP = "http://172.16.1.13:8000/";
-        this.systemVersion = "1.0.3";
+        this.systemVersion = "1.0.4";
         this.systemLocalStorageTitle = "pacl";
         this.root = this.systemIP+"1_PACL/";``
         this.lsUser = this.systemLocalStorageTitle +"-user"; // LOGIN USER
@@ -20,6 +20,21 @@ class Main {
         // console.log(formattedDate);  // Outputs something like: 2024-05-29
         return formattedDate;
 
+    }
+    GetCurrentDateTime() {
+        let currentDate = new Date();
+    
+        let year = currentDate.getFullYear();
+        let month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+        let day = currentDate.getDate().toString().padStart(2, '0');
+    
+        let hours = currentDate.getHours().toString().padStart(2, '0');
+        let minutes = currentDate.getMinutes().toString().padStart(2, '0');
+        let seconds = currentDate.getSeconds().toString().padStart(2, '0');
+    
+        let formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        
+        return formattedDateTime;
     }
     GetPhilippinesDateTime(){
         const options = {
