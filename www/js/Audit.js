@@ -252,7 +252,7 @@ class Audit extends Main{
 
         selectElem.html(options);
         selectElem.select2({
-            placeholder: "-Select Technician-",
+            placeholder: "-Select TPM-",
             width: '100%'
         });
     }
@@ -269,7 +269,7 @@ class Audit extends Main{
 
         selectElem.html(options);
         selectElem.select2({
-            placeholder: "-Select Technician-",
+            placeholder: "-Select Material Handler-",
             width: '100%'
         });
     }
